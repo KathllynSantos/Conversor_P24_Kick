@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #a9cff0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+        h4 {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 300px;
+        }
+        input[type="number"], select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        #resp {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Conversor de Temperatura</h1>
+        <h4>Celsius para Fahrenheit e Kelvin</h4>
+    </header>
+    <div class="box">
+        <input type="number" placeholder="Insira a temperatura em Celsius" id="celsius">
+        <select id="operador">
+            <option value="f">Fahrenheit</option>
+            <option value="k">Kelvin</option>
+        </select>
+        <input type="submit" value="Converter" onclick="converter()">
+    </div>
+    <div id="resp"></div>
+
+    <script>
+        function converter() {
+            const celsius = parseFloat(document.getElementById('celsius').value);
+            const operador = document.getElementById('operador').value;
+            let resultado;
+
+            if (isNaN(celsius)) {
+                document.getElementById('resp').innerText = 'Por favor, insira um valor válido em Celsius.';
+                return;
+            }
+
+            if (operador === 'f') {
+                // Celsius para Fahrenheit: (°C × 9/5) + 32 = °F
+                resultado = (celsius * 9/5) + 32;
+                document.getElementById('resp').innerText = `${celsius}°C é igual a ${resultado.toFixed(2)}°F`;
+            } else if (operador === 'k') {
+                // Celsius para Kelvin: °C + 273.15 = K
+                resultado = celsius + 273.15;
+                document.getElementById('resp').innerText = `${celsius}°C é igual a ${resultado.toFixed(2)} K`;
+            }
+        }
+    </script>
+</body>
+</html>
